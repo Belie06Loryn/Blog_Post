@@ -4,9 +4,9 @@
 https://github.com/Belie06Loryn
 
 ## Description
-
+Blog App is the web application that gone help writers to post a blog on web,so that the population can view it and make a comment.
 ### Set-up and Installation
-- Clone the Repo using this command: cd git clone 
+- Clone the Repo using this command: cd git clone  [https://github.com/Belie06Loryn/Blog_Post.git]https://github.com/Belie06Loryn/Blog_Post.git
 - Edit the start.sh file with your api key from the news.org website
 - Install python 3.6
 - Run chmod a+x start.sh
@@ -14,8 +14,13 @@ https://github.com/Belie06Loryn
 - Access the application through `http://127.0.0.1:5000/`
 
 ## BDD
-
-
+- The writer must be able to create a an account and login.
+- The writer must be able to post his/her opinion on a page.
+- The writer must be able to view all comments that are made on his post.
+- The writer must be able to delete any unlikely comment on his post.
+- The users must be able to view the quotes from another web app for inspiretion.
+- The users must be able to view the bloger post.
+- The users must be able to make a comment on a bloger posts.
 
 ## Known bugs
 No known errors if found drop a message on my profile
