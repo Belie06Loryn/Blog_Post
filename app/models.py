@@ -10,7 +10,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     pic = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
-
+ 
     
     @property
     def password(self):

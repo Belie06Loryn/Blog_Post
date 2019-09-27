@@ -71,6 +71,20 @@ def inyandiko():
 def bloger(id):
     bloge = Blogs.query.get(id)
 
-    return render_template('index.html', bloge=bloge)    
+    return render_template('index.html', bloge=bloge)   
+
+@main.route('/blogers/comment/<int:id>/comment',methods=['POST','GET'])
+def comment(id):
+    bloga = Blogs.query.filter_by(id = id).first()
+    if request.method == "POST":
+        comment = request.form.get("comment")
+        new_comment = Comment(comment = comment,user = user,bloga = bloga)
+        db.session.add(new_comment)
+        db.session.commit()
+    # bloga = Blogs.query.get_or_404(id)
+    comments = Comment.get_comments(id)
+
+    title = 'Comments'
+    return render_template('comment.html',title = title,bloga = bloga,comments=comments)     
 
     
