@@ -45,3 +45,14 @@ class Blogs(db.Model):
     def get_blogs(cls):
         blogers = Blogs.query.all()
         return blogers
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer,primary_key = True)
+    comment = db.Column(db.String(255))
+    blogerss = db.Column(db.Integer,db.ForeignKey('blogers.id'))
+
+    @classmethod
+    def get_comments(cls,blogerss):
+        comments = Comment.query.filter_by(blogerss=blogerss).all()
+        return comments
