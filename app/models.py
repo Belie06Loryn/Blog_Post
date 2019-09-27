@@ -10,7 +10,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     pic = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
- 
+    profiles = db.relationship('Profile', backref = 'users', lazy = 'dynamic')
     
     @property
     def password(self):
@@ -31,11 +31,18 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+class Profile(db.Model):
+    __tablename__ = 'profiles'
+    id = db.Column(db.Integer, primary_key = True)
+    pic_path = db.Column(db.String())
+    user = db.Column(db.Integer, db.ForeignKey("users.id"))        
+    
 class Blogs(db.Model):
     __tablename__ = 'blogers'
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
     texto = db.Column(db.String(255))
+    user = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def ububiko(self):
         db.session.add(self)
