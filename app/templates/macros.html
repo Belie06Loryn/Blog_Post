@@ -1,0 +1,9 @@
+{% macro displayBlogsList(bloger_list) %}
+    {% for bloger in bloger_list%}
+        <div>
+          <h3>{{bloger.title|upper}}</h3>
+          <p>{{bloger.texto|upper}}</p>
+        </div>
+
+    {% endfor %}
+{% endmacro %}

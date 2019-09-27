@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+{%block content%}
+<link href="https://fonts.googleapis.com/css?family=Chilanka&display=swap" rel="stylesheet">
+<div class="container">
+    <img src="" style="height:200px;width:480px;margin-left: 270px;">
+    <marquee behavior="inherit" direction="inherit"><h1 style="text-align:center;font-family: 'Chilanka', cursive;color: rgb(76, 77, 80)">ddddd</h1></marquee>
+    <hr>                 
+</div>
+<hr>
+<div class="container">
+<br>
+<h2 style="text-align:center;"> <strong>Bloger </strong></h2>
+<br>
+<h3 class="add-category"><a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Blog </span></a></h3>
+<br><br><br>
+<p style="font-size: 20px;">{{ macro.displayBlogsList(blog) }} </p>
+
+</div>
+
+
+{% endblock %}
