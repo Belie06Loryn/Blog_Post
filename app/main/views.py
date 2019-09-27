@@ -73,18 +73,17 @@ def bloger(id):
 
     return render_template('index.html', bloge=bloge)   
 
-@main.route('/blogers/comment/<int:id>/comment',methods=['POST','GET'])
+@main.route('/comment/<int:id>',methods=['POST','GET'])
 def comment(id):
-    bloga = Blogs.query.filter_by(id = id).first()
-    if request.method == "POST":
-        comment = request.form.get("comment")
-        new_comment = Comment(comment = comment,user = user,bloga = bloga)
-        db.session.add(new_comment)
-        db.session.commit()
-    # bloga = Blogs.query.get_or_404(id)
-    comments = Comment.get_comments(id)
+    form=CommentForm()
+    bloga = Blogs.query.get(id)
+    commento = Comment.query.filter_by(id = id).all()
+    if form.validate_on_submit():
+        comment = form.comment.data
+        newcomment = Comment(comment = comment,user = user,bloga = bloga)
+        newcomment.save_comme()
 
     title = 'Comments'
-    return render_template('comment.html',title = title,bloga = bloga,comments=comments)     
+    return render_template('comment.html',form=form, title = title,bloga = bloga,commento=commento)     
 
     

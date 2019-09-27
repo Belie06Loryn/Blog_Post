@@ -11,6 +11,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     QUOTES_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
+    QUOTE_API_KEY = ''
 
 class ProdConfig(Config):
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://alexie:root@localhost/bloger'

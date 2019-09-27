@@ -11,6 +11,7 @@ class User(UserMixin,db.Model):
     pic = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
     profiles = db.relationship('Profile', backref = 'users', lazy = 'dynamic')
+    comment = db.relationship('Comment', backref = 'users', lazy = 'dynamic')
     
     @property
     def password(self):
@@ -63,3 +64,12 @@ class Comment(db.Model):
     def get_comments(cls,blogerss):
         comments = Comment.query.filter_by(blogerss=blogerss).all()
         return comments
+
+    def save_comme(self):
+        db.session.add(self)
+        db.session.commit()    
+
+class Quotes(self):
+    self.author
+    self.id
+    self.quote        

@@ -5,18 +5,15 @@
           <p>{{bloger.texto|upper}}</p>
           <a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Update</span></a>
           <a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Delete </span></a><br>
-          <h3 class="add-category"><a class="btn btn-primary" href="/blogers/comment" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Comment </span></a></h3><br><br>
+          <h3 class="add-category"><a class="btn btn-primary" href="/blogers/comment" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Comment </span></a></h3>
+          {% for comment in comments %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>{{ comment.comment }}</p>
+                </div>
+            </div>
+          {% endfor %}<br><br>
         </div>
 
-    {% endfor %}
-{% endmacro %}
-
-{% macro displayCommentsList(comments) %}
-    {% for comment in comments %}
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <p>{{ comment.comment }}</p>
-        </div>
-    </div>
     {% endfor %}
 {% endmacro %}
