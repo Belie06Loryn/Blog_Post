@@ -11,7 +11,7 @@ class User(UserMixin,db.Model):
     pic = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
     profiles = db.relationship('Profile', backref = 'users', lazy = 'dynamic')
-    comment = db.relationship('Comment', backref = 'users', lazy = 'dynamic')
+    blog = db.relationship('Blogs', backref = 'users', lazy = 'dynamic')
     
     @property
     def password(self):
@@ -43,6 +43,7 @@ class Blogs(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
     texto = db.Column(db.String(255))
+    comment = db.relationship('Comment', backref = 'blogers', lazy = 'dynamic')
     user = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def ububiko(self):
@@ -69,7 +70,10 @@ class Comment(db.Model):
         db.session.add(self)
         db.session.commit()    
 
-class Quotes(self):
-    self.author
-    self.id
-    self.quote        
+class Quotes:
+    def __init__(self,id,author,quote):
+        self.id = id
+        self.author =  author 
+        self.quote = quote
+              
+   

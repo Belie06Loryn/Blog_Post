@@ -4,12 +4,14 @@ from ..models import User,Blogs
 from flask_login import login_required, current_user
 from .forms import UpdateProfile,BlogsForm
 from .. import db, photos
+from .. requests import getQuotes
 
 @main.route('/')
 def index():
     blog = Blogs.get_blogs()
+    isoko = getQuotes()
 
-    return render_template('index.html',  blog = blog)
+    return render_template('index.html',  blog = blog, isoko = isoko)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -71,7 +73,7 @@ def inyandiko():
 def bloger(id):
     bloge = Blogs.query.get(id)
 
-    return render_template('index.html', bloge=bloge)   
+    return render_template('index.html', bloge=bloge) 
 
 @main.route('/comment/<int:id>',methods=['POST','GET'])
 def comment(id):
