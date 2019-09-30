@@ -82,10 +82,46 @@ def comment(id):
     commento = Comment.query.filter_by(id = id).all()
     if form.validate_on_submit():
         comment = form.comment.data
+        blogerss = blogerss
+        user = user
         newcomment = Comment(comment = comment,user = user,bloga = bloga)
         newcomment.save_comme()
 
     title = 'Comments'
+    return redirect(url_for('.comment',blog_id = blog_id))
     return render_template('comment.html',form=form, title = title,bloga = bloga,commento=commento)     
 
-    
+@main.route('/deletecomment/<int:id>', methods = ['GET','POST'])
+@login_required
+def deletecomment(id):
+
+    current_post = Comment.query.filter_by(id = id).first()
+
+    if current_post.writer != current_user:
+        abort(404)
+
+    db.session.delete(current_post)
+    db.session.commit()
+    return redirect(url_for('.index'))
+    return render_template('comment.html',current_post = current_post)
+
+@main.route('/update/<int:id>',methods= ['GET','POST'])
+@login_required
+def updateblog(id):
+
+    blogs = Blog.query.filter_by(id = id).first()
+    if blogs is None:
+        abort(404)
+
+    form = UpdateBlogForm()
+
+    if form.validate_on_submit():
+
+        blogs.title = form.title.data
+        blogs.content = form.content.data
+
+        db.session.add(blogs)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+    return render_template('update_blog.html',form = form)

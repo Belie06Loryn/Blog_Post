@@ -12,7 +12,8 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     profiles = db.relationship('Profile', backref = 'users', lazy = 'dynamic')
     blog = db.relationship('Blogs', backref = 'users', lazy = 'dynamic')
-    
+    comments = db.relationship('Comment', backref = 'users', lazy = 'dynamic')
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -43,7 +44,7 @@ class Blogs(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
     texto = db.Column(db.String(255))
-    comment = db.relationship('Comment', backref = 'blogers', lazy = 'dynamic')
+    comments = db.relationship('Comment', backref = 'blogers', lazy = 'dynamic')
     user = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def ububiko(self):
@@ -62,12 +63,13 @@ class Blogs(db.Model):
             db.session.commit()
             db.session.delete(self)
             db.session.commit()
+
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer,primary_key = True)
     comment = db.Column(db.String(255))
     blogerss = db.Column(db.Integer,db.ForeignKey('blogers.id'))
-
+    user = db.Column(db.Integer, db.ForeignKey('users.id'))
     @classmethod
     def get_comments(cls,blogerss):
         comments = Comment.query.filter_by(blogerss=blogerss).all()
