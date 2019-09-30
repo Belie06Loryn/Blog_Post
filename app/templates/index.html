@@ -2,6 +2,26 @@
 {% import 'macros.html' as macro %}
 
 {%block content%}
+
+<style>
+.hr{ 
+  display: block;
+  margin-left:200px;
+  margin-right: 200px;
+  border-style: inset;
+  border-width: 1px;
+} 
+footer {
+  /* position: fixed; */
+  background-color:transparent;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color:rgb(8, 8, 8);
+  text-align: center;
+  font-size: 10px;
+}
+</style>
 <div class="container">
     <marquee behavior="inherit" direction="inherit"><h1 style="text-align:center;font-family: 'Berkshire Swash', cursive;color: rgb(76, 77, 80)">Blog Page</h1></marquee>
     <hr>                 
@@ -19,5 +39,12 @@
     <p style="font-size: 20px;">{{ macro.displayBlogsList(blog)}} </p>
     
 
+</div><br><br><br><br>
+<div>
+    <footer>
+        <hr class="hr">
+        <p>@2019 by ____Belie06Loryn.Proudly Created</p>
+    </footer>
 </div>
 {% endblock %}
+
