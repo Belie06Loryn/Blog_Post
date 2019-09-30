@@ -75,5 +75,18 @@ class Quotes:
         self.quote = quote
         self.author =  author 
         
-              
+class Subscribe(db.Model):
+    __tablename__ = 'subscribe'
+    id = db.Column(db.Integer,primary_key = True)
+    email = db.Column(db.String(255))
+
+    def sav_sub(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_sub(cls):
+        subscribe = Subscribe.query.all()
+        return subscribe
+
    
