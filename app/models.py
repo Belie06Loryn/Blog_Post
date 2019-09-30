@@ -55,6 +55,13 @@ class Blogs(db.Model):
         blogers = Blogs.query.all()
         return blogers
 
+    def delete(self, id):
+        comments = Comment.query.filter_by(id = id).all()
+        for comment in comments:
+            db.session.delete(comment)
+            db.session.commit()
+            db.session.delete(self)
+            db.session.commit()
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer,primary_key = True)
@@ -68,7 +75,11 @@ class Comment(db.Model):
 
     def save_comme(self):
         db.session.add(self)
-        db.session.commit()    
+        db.session.commit() 
+
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()       
 
 class Quotes:
     def __init__(self,quote,author):
@@ -88,5 +99,7 @@ class Subscribe(db.Model):
     def get_sub(cls):
         subscribe = Subscribe.query.all()
         return subscribe
+
+
 
    
