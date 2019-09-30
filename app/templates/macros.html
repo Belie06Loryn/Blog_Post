@@ -1,20 +1,24 @@
 {% macro displayBlogsList(bloger_list) %}
-    {% for bloger in bloger_list%}
-        <div>
-          <h3>{{bloger.title|upper}}</h3>
-          <p>{{bloger.texto|upper}}</p>
-          <a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Update</span></a>
-          <a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Delete </span></a><br>
-          <h3 class="add-category"><a class="btn btn-primary" href="/blogers/comment" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Comment </span></a></h3>
-          {% for comment in comments %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <p>{{ comment.comment }}</p>
+  {% for bloger in bloger_list%}
+      <div class="row">
+        <div class="tab-content">
+            <div class="container tab-pane active" id="all"> <br>
+              <h3>{{bloger.title|upper}}</h3>
+              <p>{{bloger.texto|upper}}</p>
+              <a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Update</span></a>
+              <a class="btn btn-primary" href="/add/blogers" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Delete </span></a><br>
+              <h3 class="add-category"><a class="btn btn-primary" href="/blogers/comment" style="background-color:#66a5a2; float:left;"><span aria-hidden="true"> Comment </span></a></h3>
+              {% for comment in comments %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>{{ comment.comment }}</p>
+                    </div>
                 </div>
+              {% endfor %}  <br>
             </div>
-          {% endfor %}<br><br>
-        </div>
+          </div>
+      </div>
 
-    {% endfor %}
+  {% endfor %}
 {% endmacro %}
 
