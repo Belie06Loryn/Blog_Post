@@ -18,7 +18,7 @@ def getQuotes():
         if get_quotes_response:
             author = get_quotes_response.get('author')
             quote = get_quotes_response.get('quote')
-        #     quotes_object = Quotes(author,quote)
+            quotes_object = Quotes(author,quote)
 
     return quotes_object
 
