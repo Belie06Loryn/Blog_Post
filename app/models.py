@@ -71,8 +71,9 @@ class Comment(db.Model):
         db.session.commit()    
 
 class Quotes:
-    def __init__(self,author,quote):
-        self.author =  author 
+    def __init__(self,quote,author):
         self.quote = quote
+        self.author =  author 
+        
               
    
